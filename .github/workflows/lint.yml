@@ -46,12 +46,16 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install JSHint
-        run: npm install --save-dev jshint
+        working-directory: ./server
+        run: |
+          npm install jshint
 
       - name: Run JavaScript Linter
+        working-directory: ./server
         run: |
-          npx jshint --config .jshintrc ./server/database/*.js
-          echo "Linted all the JavaScript files successfully"
+          npx jshint database/*.js
+          echo "Linted all JavaScript files successfully"
+
