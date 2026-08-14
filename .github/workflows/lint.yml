@@ -1,3 +1,4 @@
+
 name: 'Lint Code'
 
 on:
@@ -34,7 +35,6 @@ jobs:
           find ./server -name "*.py" -exec flake8 {} +
           echo "Linted all the Python files successfully"
 
-
   lint_js:
     name: Lint JavaScript Files
     runs-on: ubuntu-latest
@@ -49,13 +49,11 @@ jobs:
           node-version: 18
 
       - name: Install JSHint
-        working-directory: ./server
         run: |
-          npm install jshint
+          npm install --no-save jshint@2.13.6
 
       - name: Run JavaScript Linter
-        working-directory: ./server
         run: |
-          npx jshint database/*.js
+          ./node_modules/.bin/jshint server/database/*.js
           echo "Linted all JavaScript files successfully"
 
