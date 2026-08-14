@@ -49,10 +49,9 @@ jobs:
           node-version: '18'
 
       - name: Install JSHint
-        run: |
-          npm install --save-dev jshint
+        run: npm install --save-dev jshint
 
       - name: Run JavaScript Linter
         run: |
-          npx jshint ./server/database/*.js
+          npx jshint --config .jshintrc ./server/database/*.js
           echo "Linted all the JavaScript files successfully"
